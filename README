@@ -1,0 +1,13 @@
+Caba Alexandru 322CB  Tema1 PC
+
+Structura mini_k1 contine campurile din pachet pana la data inclusiv.
+Structura mini_k2 contine campurile check si mark.
+Structura s_data contine campurile din data pentru pachetul S.
+
+  Am inceput transmisia prin trimiterea pachetului S de la sender catre receiver.
+  Dupa ce am completat toate campurile structurilor definite, le-am pus pe acestea in payload si incerc trimiterea mesajului. In caz ca primesc timeout, numar in retry si incerc inca o data pana ajung la 3. Daca primesc raspuns, resetez counter-ul si verific daca e ACK sau NAK.
+  In receiver primesc pachetul S si verific daca suma de control calculata pe payload este egala cu cea din pachet. In caz afirmativ trimit ACK altfel NAK. De asemenea si aici numar daca am primit timeout de mai mult de 3 ori si daca se intampla asta inchei transmisia.
+  Dupa trimiterea pachetului S, trec la trimiterea fiecarui fisier. In sender trimit file header(F) si astept un ACK, altfel retrimit pachetul. In receiver astept pachetul F si trimit ACK/NAK in functie de caz. Tot aici verific daca primesc un pachet B pentru sfarsitul transmisiei, iar in caz ca primesc unul sar la finalul programului unde trimit ultimul mesaj ACK si inchei executia.
+  Dupa stabilirea numelui fisierului incep sa citesc din fisier in sender si sa trimit pachete de tip D pana termin fisierul, verificand sa nu am timeout de 3 ori la rand. Daca am ajuns la finalul fisierului trimit si pachetul pentru inchiderea fisierului de tip Z. Receiverul le primeste, verifica daca sunt in ordine si raspunde cu ACK sau NAK. Aici verific si daca primesc pachet pentru final de fisier Z, iar in acest caz inchid fisierul si trec la asteptarea urmatorului pachet F sau B.
+  Daca sender-ul a terminat de trimis fisierele, acesta scrie ultimul pachet pentru inchiderea transmisiunii si il trimite catre receiver pana primeste un ACK dupa care incheie executia programului.
+  Cand receiver-ul a primit ultimul pachet corect, acesta trimite ACK si iese din executie.
